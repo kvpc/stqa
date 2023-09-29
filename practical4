@@ -1,0 +1,36 @@
+public class weblogin {
+    private WebDriver driver;
+    @Before
+    public void setUp() {
+        System.setProperty("webdriver.gecko.driver","E:\\printout\\stqa\\geckodriver.exe");
+        driver = new FirefoxDriver();
+    }  
+    @Test
+    public void testLoginPage(){
+        try{
+            
+            driver.get("http://127.0.0.1:5500/dsk.html");
+            
+            WebElement usernameField = driver.findElement(By.id("username"));
+             WebElement passwordField = driver.findElement(By.id("password"));
+             
+             usernameField.sendKeys("aditya");
+             passwordField.sendKeys("123");
+             
+             
+             passwordField.submit();
+             
+             Thread.sleep(5000);
+                    
+        }
+        catch(InterruptedException e){
+            
+            System.out.println(e.getMessage());
+            
+        }
+        finally{
+            driver.quit();
+        }
+    }
+    
+}
