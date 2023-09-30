@@ -1,0 +1,43 @@
+import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.Key;
+import java.util.Base64;
+
+public class aesanddes {
+    public static void main(String[] args) throws Exception {
+        String originalMessage = "This is a secret message.";
+        String keyString = "MySecretKey12345"; // 8-character key
+        
+        
+        if (keyString.length() > 8) {
+            keyString = keyString.substring(0, 8); // Truncate to 16 characters
+        } else if (keyString.length() < 8) {
+            // Pad with zero
+        }
+
+        // Create a DES key from the key string
+        Key key = new SecretKeySpec(keyString.getBytes(), "DES");
+
+        // Initialize the cipher for encryption
+        Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+
+        // Encrypt the message
+        byte[] encryptedBytes = cipher.doFinal(originalMessage.getBytes());
+
+        // Encode the encrypted bytes to Base64 for better display
+        String encryptedMessage = Base64.getEncoder().encodeToString(encryptedBytes);
+
+        System.out.println("Original Message: " + originalMessage);
+        System.out.println("Encrypted Message: " + encryptedMessage);
+
+        // Initialize the cipher for decryption
+        cipher.init(Cipher.DECRYPT_MODE, key);
+
+        // Decrypt the message
+        byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedMessage));
+        String decryptedMessage = new String(decryptedBytes);
+
+        System.out.println("Decrypted Message: " + decryptedMessage);
+    }
+}
