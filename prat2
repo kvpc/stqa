@@ -1,0 +1,44 @@
+public class INS {
+    
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Enter:");
+        String plantext = sc.nextLine();
+        
+        System.out.println("key:");
+        int key = sc.nextInt();
+        
+        
+       
+        String encry = caesar(plantext,key);
+        System.out.println("Enyterd" + encry);
+         
+         
+         String dencry = caesar(plantext, 26  - key);
+         System.out.println("Enyterd" + dencry);
+         
+                            
+    }
+    public static String caesar(String message, int key){
+        
+        StringBuilder bd = new StringBuilder();
+        
+        for(char c : message.toCharArray()){           
+            if(Character.isLetter(c)){
+                char base = Character.isLowerCase(c) ? 'a' : 'A' ;
+                
+                c = (char) (base + (c + base - key) % 26);
+                
+             bd.append(c);
+            }
+        }
+        
+        return bd.toString();
+        
+           
+    
+
+    }
+}
