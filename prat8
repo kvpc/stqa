@@ -1,0 +1,11 @@
+ServiceReference1.Service1Client a = new ServiceReference1.Service1Client();
+            int x = Convert.ToInt32(textBox1.Text);
+            int y = Convert.ToInt32(textBox2.Text);
+            if (comboBox1.Text == "add")
+            {
+                textBox3.Text = a.add(x, y).ToString();
+            }
+            if (comboBox1.Text == "sub")
+            {
+                textBox3.Text = a.sub(x, y).ToString();
+            }
