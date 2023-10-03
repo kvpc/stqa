@@ -1,0 +1,5 @@
+ServiceReference1.FactorialwebserviceClient client =
+
+new ServiceReference1.FactorialwebserviceClient();
+
+Label1.Text = "Factorial is : " + client.factorial(Convert.ToInt(TextBox1.Text)).ToString();
