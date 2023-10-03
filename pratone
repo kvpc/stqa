@@ -1,0 +1,14 @@
+@WebMethod(operationName = "ftoc")
+    public Double ftoc(@WebParam(name = "f") double f) {
+        double c = (f - 32) / 1.8;
+        return c;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "ctof")
+    public Double ctof(@WebParam(name = "c") double c) {
+        double f = c * 1.8 + 32;
+        return f;
+    }
